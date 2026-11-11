@@ -1,0 +1,45 @@
+button[class*="awsui_variant-primary"],
+button[data-awsui-variant="primary"],
+.awsui-button-variant-primary {
+  background-color: #ec7211 !important;
+  border-color: #ec7211 !important;
+  border-radius: 2px !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+button[class*="awsui_variant-primary"]:hover,
+button[data-awsui-variant="primary"]:hover {
+  background-color: #eb5f07 !important;
+  border-color: #eb5f07 !important;
+}
+
+button[class*="awsui_variant-primary"]:active,
+button[data-awsui-variant="primary"]:active {
+  background-color: #dd6b10 !important;
+  border-color: #dd6b10 !important;
+}
+
+button[class*="awsui_variant-normal"],
+button[data-awsui-variant="normal"],
+.awsui-button-variant-normal {
+  border-radius: 2px !important;
+}
+
+button {
+  border-radius: 2px !important;
+}
+
+.aws-selectable-tile {
+  border: 1px solid #d5dbdb;
+  border-radius: 4px;
+  padding: 16px;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.aws-selectable-tile.selected {
+  border: 2px solid #ec7211;
+  background-color: #fcf8f5;
+}

@@ -1,0 +1,21 @@
+# Python & Backend
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+*.db
+*.sqlite3
+.env
+
+# Next.js & Frontend
+node_modules/
+.next/
+out/
+next-env.d.ts
+.env.local
+.env*.local
+
+# OS & Editor
+.DS_Store
+Thumbs.db
