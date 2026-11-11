@@ -1,5 +1,5 @@
 # AWS Route 53 Clone
-Vercel link - https://github.com/Ashwin-Arumugam/aws-route53-clone
+Vercel link - https://aws-route53-clone-lac-eight.vercel.app/
 
 A functional clone of the AWS Route 53 management console built with Next.js (TypeScript), Cloudscape Design System, FastAPI, and SQLite.
 
