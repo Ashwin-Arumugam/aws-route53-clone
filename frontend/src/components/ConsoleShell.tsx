@@ -37,6 +37,12 @@ export default function ConsoleShell({
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
+    const token = localStorage.getItem("aws_token");
+    if (!token) {
+      router.replace("/login");
+      return;
+    }
+
     const cached = localStorage.getItem("aws_user");
     if (cached) {
       try {
@@ -47,6 +53,8 @@ export default function ConsoleShell({
         if (u) {
           setUser(u);
           localStorage.setItem("aws_user", JSON.stringify(u));
+        } else {
+          router.replace("/login");
         }
       });
     }
@@ -56,7 +64,7 @@ export default function ConsoleShell({
       setIsDarkMode(true);
       applyMode(Mode.Dark);
     }
-  }, []);
+  }, [router]);
 
   const toggleTheme = () => {
     const nextDark = !isDarkMode;

@@ -1,5 +1,19 @@
-import { redirect } from "next/navigation";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  redirect("/hosted-zones");
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("aws_token");
+    if (token) {
+      router.replace("/hosted-zones");
+    } else {
+      router.replace("/login");
+    }
+  }, [router]);
+
+  return null;
 }
