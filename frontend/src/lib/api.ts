@@ -1,4 +1,5 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+const RAW_API_BASE = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api").replace(/\/+$/, "");
+const API_BASE = RAW_API_BASE.endsWith("/api") ? RAW_API_BASE : `${RAW_API_BASE}/api`;
 
 function getAuthHeader(): Record<string, string> {
   if (typeof window !== "undefined") {
@@ -21,10 +22,23 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   });
 
   if (!response.ok) {
-    let errorDetail = "Request failed";
+    let errorDetail = `Request failed (${response.status})`;
     try {
       const err = await response.json();
-      errorDetail = err.detail || err.message || errorDetail;
+      if (Array.isArray(err.detail)) {
+        errorDetail = err.detail
+          .map((d: any) => {
+            const loc = Array.isArray(d.loc) ? d.loc.slice(1).join(".") : "";
+            return loc ? `${loc}: ${d.msg}` : d.msg || JSON.stringify(d);
+          })
+          .join("; ");
+      } else if (typeof err.detail === "string") {
+        errorDetail = err.detail;
+      } else if (err.detail && typeof err.detail === "object") {
+        errorDetail = err.detail.msg || JSON.stringify(err.detail);
+      } else if (err.message) {
+        errorDetail = err.message;
+      }
     } catch {}
     throw new Error(errorDetail);
   }
